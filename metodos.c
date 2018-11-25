@@ -829,3 +829,27 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
     liberaVetor(vetResiduoMPCalcu);
     liberaVetor(vetResiduoMPAtual);
 }
+
+//derivada de f(x)=x4−3x3+2
+double dfx(double x) {
+    return 4*(x*x*x) - 9*(x*x);
+}
+
+// valor absoluto
+double abs_val(double x) {
+    return x > 0 ? x : -x;
+}
+
+double gradienteDescente(double dx, double error, double gamma, unsigned int max_iters) {
+    double c_error = error + 1;
+    unsigned int iters = 0;
+    double p_error;
+    while(error < c_error && iters < max_iters) {
+        p_error = dx;
+        dx -= dfx(p_error) * gamma;
+	    c_error = abs_val(p_error-dx);
+        printf("\nerro %f\n", c_error);
+        iters++;
+    }
+    return dx;
+}
