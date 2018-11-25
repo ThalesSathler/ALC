@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <float.h>
 #include <stdio.h>
+
 /*
  * Em métodos iterativos, quando a tolerancia passada como parâmetro for igual 0, será utilizada
  * a constante DBL_EPSILON, da biblioteca float.h, no lugar de zero, pois DBL_EPSILON é a menor
@@ -719,7 +720,7 @@ void simulatedAnnealing(double** A, double* b, double* x, double alfa, double ls
 
 void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int particulas){ /// MB é a solução do sistema
 
-    double **MP, **S, **V, *vResiduo, normaMB, *vetMB, *getVetV, *getVetMP, *getVetS, *velAtual, *vetResiduoMPCalcu, *vetResiduoMPAtual;
+    double **MP, **S, **V, *vResiduo, normaMB,normaAtual, *vetMB, *getVetV, *getVetMP, *getVetS, *velAtual, *vetResiduoMPCalcu, *vetResiduoMPAtual;
     int i, j;
     double c1 = 2, c2 = 2, A1, A2, A3;
 
@@ -748,7 +749,6 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
         }
     }
 
-
     /// encontrar o primeiro MB usando a primeira particula como base
     getColuna(S, MB, 0, n);
     residuo(matrizA, MB, vetorB, vResiduo, n);
@@ -769,7 +769,8 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
         }
     } /// Já tenho o vetor MB
 
-    while(tol < normaMB)
+    int count = 0;
+    while(normaMB > tol || count > 5000)
     {
         for(j = 0; j < particulas; j++)
         {
@@ -803,8 +804,9 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
         {
             getColuna(MP, vetMB, i, n);
             residuo(matrizA, vetMB, vetorB, vResiduo, n);
-	    
-            if(normaMB > normaDois(vResiduo, n))
+
+            normaAtual = normaDois(vResiduo, n);
+            if(normaMB > normaAtual)
             {
                 for(j = 0; j < n; j++)
                 {
@@ -814,8 +816,9 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
                 normaMB = normaDois(vResiduo,n);
             }
         }
+        count++;
     }
-
+    
     liberaMatriz(S,n);
     liberaMatriz(V,n);
     liberaMatriz(MP,n);
