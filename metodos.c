@@ -157,14 +157,15 @@ int gaussSeidel(double** A, double* b, double* x, double tolerancia, unsigned lo
         a menos que as linhas da matriz sejam permutadas.
         */
         if(A[i][i] == 0)
-	{
-	    liberaVetor(xant);
-            return 0;
-	}
+        {
+            liberaVetor(xant);
+                return 0;
+        }
 
         //primeiro vetor para solução do método iterativo
         x[i] = b[i] / A[i][i];
     }
+    
 
     while(k < iMax && erro >= tolerancia)
     {
