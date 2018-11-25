@@ -4,7 +4,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <float.h>
-
+#include <stdio.h>
 /*
  * Em métodos iterativos, quando a tolerancia passada como parâmetro for igual 0, será utilizada
  * a constante DBL_EPSILON, da biblioteca float.h, no lugar de zero, pois DBL_EPSILON é a menor
@@ -156,14 +156,15 @@ int gaussSeidel(double** A, double* b, double* x, double tolerancia, unsigned lo
         a menos que as linhas da matriz sejam permutadas.
         */
         if(A[i][i] == 0)
-	{
-	    liberaVetor(xant);
-            return 0;
-	}
+        {
+            liberaVetor(xant);
+                return 0;
+        }
 
         //primeiro vetor para solução do método iterativo
         x[i] = b[i] / A[i][i];
     }
+    
 
     while(k < iMax && erro >= tolerancia)
     {
