@@ -114,4 +114,6 @@ void simulatedAnnealing(double** A, double* b, double* x, double alfa, double ls
  */
 void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int particulas);
 
+
+double gradienteDescente(double dx, double error, double gamma, unsigned int max_iters);
 #endif // METODOS_H_INCLUDED
