@@ -123,4 +123,9 @@ double gradienteDescente(double dx, double error, double gamma, unsigned int max
  */
 double CalculaNumeroCondicao(double **matrizA, int n, double *vetorB, int dimensao);
 
+/*
+r é solução, m é a Matriz.
+*/
+void MatrizInversa( double *r, const double *m, int ordem);
+
 #endif // METODOS_H_INCLUDED

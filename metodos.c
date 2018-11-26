@@ -864,3 +864,106 @@ double CalculaNumeroCondicao(double **matrizA, int n, double *vetorB, int dimens
     //calcula a inversa de A
     //inversa
 }
+
+void MatrizInversa( double *r, const double *m, int ordem)
+{
+    double inv[ordem * ordem];
+    double temp[ordem * ordem];
+
+    // Copia para 'temp' o conteúdo de 'm'
+    for( int i = 0; i < ordem * ordem; i++ )
+    {
+        temp[ i ] = m[ i ];
+    }
+
+    // Transforma 'inv' na matriz identidade
+    int j = 0;
+
+    for( int i = 0; i < ordem * ordem; i++ )
+    {
+        if( i == (j * (ordem + 1)) )
+        {
+            inv[i] = 1.0;
+            j++;
+        }
+        else inv[i] = 0.0;
+    }
+
+    //////  Escalona a parte inferior
+    j = 0;
+    double pivo;
+
+    for ( int i = 0; i < ordem; i++ )
+    {
+        if ( temp[ i * ( ordem + 1 ) ] == 0.0 ) /// Verifica se o pivo é nulo
+        {
+            for ( j = i + 1; j < ordem; j++ )   /// Procura o valor não nulo abaixo do pivo
+            {
+                if ( temp[ i + j * ordem ] != 0.0 )
+                {
+                    for ( int k = 0; k < ordem; k++ )
+                    {
+                        /// Soma a linha do pivo nulo com a linha abaixo
+                        temp[ k + i * ordem ] += temp[ k + j * ordem ];
+                        inv[ k + i * ordem ] += inv[ k + j * ordem ];
+                    }
+                    break;
+                }
+            }
+
+            if ( j == ordem )   /// Se não achar retorna matriz nula
+            {
+                printf("\n\nERRO: Matriz nao possui inversa\n\n");
+                return;
+            }
+        }
+
+        for ( j = i + 1; j < ordem; j++ )   /// Zera os elementos abaixo do pivô
+        {
+            if ( temp[ i + j * ordem ] != 0.0 ) /// Ignora se elemento é nulo
+            {
+                pivo = temp[ i + j * ordem ] / temp[ i * ( ordem + 1 ) ];
+                for( int k = 0; k < ordem; k++ )
+                {
+                    temp[ k + j * ordem ] -= temp[ k + i * ordem ] * pivo;
+                    inv[ k + j * ordem ] -= inv[ k + i * ordem ] * pivo;
+                }
+            }
+        }
+    }
+
+    //////// Escalona a parte superior
+    for( int i = ordem - 1; i >= 0; i-- )
+    {
+        for( j = i - 1; j >= 0; j-- )   /// Zera os elementos abaixo do pivô
+        {
+            if( temp[ i + j * ordem ] != 0.0 )  /// Ignora se elemento é nulo
+            {
+                pivo = temp[ i + j * ordem ] / temp[ i * ( ordem + 1 ) ];
+                for( int k = ordem - 1; k >= 0; k-- )
+                {
+                    temp[ k + j * ordem ] -= temp[ k + i * ordem ] * pivo;
+                    inv[ k + j * ordem ] -= inv[ k + i * ordem ] * pivo;
+                }
+            }
+        }
+    }
+
+    //////// Transformando os elementos da coluna principal de 'temp' em '1'
+    for( int i = 0; i < ordem; i++ )
+    {
+        pivo = temp[ i * ( ordem + 1 ) ];
+        for( j = 0; j < ordem; j++ )
+        {
+            temp[ j + i * ordem ] /= pivo;
+            inv[ j + i * ordem ] /= pivo;
+        }
+    }
+
+    // Copia os elementos de 'inv' para 'r'
+    for ( int i = 0; i < ordem * ordem; i++ )
+    {
+        r[i] = inv[i];
+    }
+
+}
