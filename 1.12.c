@@ -6,7 +6,7 @@
 
 int main()
 {
-    double **A, *b, **R, **Rt, *y, *x1, *r1, w;
+    double **A, *b, **R, *x1, *r1, w;
     double tol = 0.0001;
     int n, teste;
     unsigned long int iMax = 1000;

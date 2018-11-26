@@ -116,4 +116,11 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
 
 
 double gradienteDescente(double dx, double error, double gamma, unsigned int max_iters);
+
+
+/**
+ * Calcula o numero condicao da matriz que é K(A) := ||A^-1||*||A||
+ */
+double CalculaNumeroCondicao(double **matrizA, int n, double *vetorB, int dimensao);
+
 #endif // METODOS_H_INCLUDED
