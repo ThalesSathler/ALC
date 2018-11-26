@@ -158,6 +158,11 @@ Preenche com zeros uma matriz qualquer.
 void **matrizNula(double **matriz, int n, int m);
 
 /**
+Encontra a inversa da matriz.
+*/
+double** calculaInversa(double **matrizA, int lin, int col);
+
+/**
 Encontra o grau de cada vértice em uma matriz de adjacência.
 */
 void encontraGraus(double **matrizA, int n, int m, double **matrizD);

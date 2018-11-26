@@ -856,3 +856,11 @@ double gradienteDescente(double dx, double error, double gamma, unsigned int max
     }
     return dx;
 }
+
+double CalculaNumeroCondicao(double **matrizA, int n, double *vetorB, int dimensao){
+    double **matrizAI;
+    matrizAI = criaMatriz(dimensao, dimensao);
+
+    //calcula a inversa de A
+    //inversa
+}

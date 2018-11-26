@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
+#include "metodos.h"
+#include "entrada.h"
+#include "saida.h"
 
 double** criaMatriz(int m, int n)
 {
@@ -353,6 +356,44 @@ void matrizNula(double **matriz, int n, int m)
             matriz[i][j] = 0;
 }
 
+double** calculaInversa(double **matrizA, int lin, int col)
+{
+    double ** inversa;
+    double ** matrizI;
+    double *v1;
+    double *v2;
+    double tol = 0.000001;
+    unsigned long int iMax = 10000;
+
+    matrizI = criaMatrizI(lin);
+    inversa = criaMatriz(lin, col);
+    v1 = criaVetor(lin);
+    v2 = criaVetor(lin);
+
+    
+
+    for(int i = 0; i < col; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            v1[j] = matrizI[i][j];
+        }
+        imprimeVetor(v1, lin);
+
+        gaussSeidel(matrizA, v1, v2, tol, iMax, lin);
+
+        imprimeVetor(v2, lin);
+
+        for(int k = 0; k < col; k++)
+        {
+            inversa[i][k] = v2[k];
+        }
+        if(i == col-1)
+            break;
+    }
+    return inversa;
+}
+
 double determinanteI(double **matrizI, int n)
 {
     double resultado = 1;
@@ -502,3 +543,4 @@ int isTriangularInferior(double **matriz, int n){
     }
     return 1;
 }
+
