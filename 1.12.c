@@ -11,11 +11,9 @@ int main()
     int n, teste;
     unsigned long int iMax = 1000;
 
-    n = 22;
+    A = lerMatriz(&n, &n);
 
-    A = lerMatriz(n, n);
-
-    b = lerVetor(n);
+    b = lerVetor(&n);
 
     R = criaMatriz(n, n);
 

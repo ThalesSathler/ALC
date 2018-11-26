@@ -10,12 +10,12 @@ int main()
     int n;
     unsigned long int erro = 1000000;
 
-    n = 22;
-
-    a = lerMatriz(n, n);
-    b = lerVetor(n);
+    a = lerMatriz(&n, &n);
+    b = lerVetor(&n);
 
     x1 = criaVetor(n);
+    // imprimeMatriz(a,n,n);
+    // imprimeVetor(b,n);
 
     while(!gaussSeidel(a, b, x1, tol, erro, n))
     {

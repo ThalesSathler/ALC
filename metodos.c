@@ -770,7 +770,7 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
     } /// Já tenho o vetor MB
 
     int count = 0;
-    while(normaMB > tol || count > 5000)
+    while(normaMB > tol && count < 5000)
     {
         for(j = 0; j < particulas; j++)
         {
@@ -812,8 +812,8 @@ void PSO(double **matrizA, int n, double *vetorB, double *MB, double tol, int pa
                 {
                     MB[j] = vetMB[j];
                 }
-                
-                normaMB = normaDois(vResiduo,n);
+                printf("iteração: %d, Melhor norma:%lf, normal atual:%lf\n",count,normaMB,normaAtual);
+                normaMB = normaAtual;
             }
         }
         count++;

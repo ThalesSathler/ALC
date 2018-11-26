@@ -19,9 +19,9 @@ int main()
 
     xAux = criaVetor(n);
 
-    A = lerMatriz(n, n);
+    A = lerMatriz(&n, &n);
 
-    b = lerVetor(n);
+    b = lerVetor(&n);
 
     //executando os criterios
     cLinha = criterioLinhas(A, n);

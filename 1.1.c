@@ -7,16 +7,20 @@
 
 
 int main(int argc, char const *argv[])
-{    
+{   
+    
     double **A;
     double *b;
-    double *x;
-    int dimensao = 4;
-    double *resid;
     
-
-    A = lerMatriz(dimensao,dimensao);
-    b = lerVetor(dimensao);
+    double *x;
+    
+    int dimensao;
+    
+    double *resid;
+    printf("00\n"); 
+    printf("01\n");
+    A = lerMatriz(&dimensao,&dimensao);
+    b = lerVetor(&dimensao);
     x = criaVetor(dimensao);
     resid = criaVetor(dimensao);
 

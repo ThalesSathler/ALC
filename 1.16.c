@@ -7,13 +7,13 @@
 int main()
 {
     double **a, *b, *x, *r1;
-    int n = 22;
+    int n;
     double tol = 0.0001;
     unsigned long int max = 1000;
     //tem que ser  matrizes simetricas positivas semidefinidas
     
-    a = lerMatriz(n, n);
-    b = lerVetor(n);
+    a = lerMatriz(&n, &n);
+    b = lerVetor(&n);
     
     x = criaVetor(n);
     

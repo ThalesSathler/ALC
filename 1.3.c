@@ -11,11 +11,11 @@ int main(int argc, char const *argv[])
     double **A;
     double **l;
     double **u;
-    int dimensao = 4;
+    int dimensao;
     double *resid;
     
 
-    A = lerMatriz(dimensao,dimensao);
+    A = lerMatriz(&dimensao,&dimensao);
     u = criaMatriz(dimensao, dimensao);
     l = criaMatrizI(dimensao);
     resid = criaVetor(dimensao);

@@ -13,18 +13,17 @@ int main(int argc, char const *argv[])
     double *X;
     int dimensao = 20;
     double tol = 0.0001;
-    int particulas = 800;
+    int particulas = 200;
 
     double *resid;
     double normaPSO;
     
 
-    A = lerMatriz(dimensao,dimensao);
-    B = lerVetor(dimensao);
+    A = lerMatriz(&dimensao,&dimensao);
+    B = lerVetor(&dimensao);
     X = criaVetor(dimensao);
     resid = criaVetor(dimensao);
 
-    // PSO(dimensao, A, B, X);
     PSO(A,dimensao,B,X,tol,particulas);
 
     printf("\nSolucao com PSO\n");

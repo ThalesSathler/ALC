@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
     double *resid;
     
 
-    A = lerMatriz(dimensao,dimensao);
+    A = lerMatriz(&dimensao,&dimensao);
     O = criaMatriz(dimensao, dimensao);
     R = criaMatrizI(dimensao);
     resid = criaVetor(dimensao);

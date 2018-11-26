@@ -12,9 +12,9 @@ int main(int argc, char const *argv[])
   double **U, **S, **V, **Vt, **Av1, **Av2, *u1, *u2, *v1, *v2, *v3, vs1, vs2, *vetNulo, **UoS, **UoSVt;
   int n, i, j, k;
   printf("Decomposicao SVD para matrizes 2xn\n");
-  n = 3;
 
-  A = lerMatriz(2, n);
+  A = lerMatrizSVD(2, &n);
+  imprimeMatriz(A,2,n);
   At = criaMatriz(n, 2);
   AAt = criaMatriz(2, 2);
   AtA = criaMatriz(n, n);
